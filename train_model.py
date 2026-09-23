@@ -97,6 +97,9 @@ def main():
     print(f"Test FPR: {test_fpr:.4f}")
     print(f"Test Recall: {test_recall:.4f}")
     print(f"Test Precision: {test_precision:.4f}")
+    print("\nCAVEAT on Precision: The test set has an artificial class balance of ~45% benign and 55% attack. "
+          "This is not representative of real-world traffic where attacks are far rarer. "
+          "Therefore, the reported Precision is significantly higher than what would be observed in production at the same FPR and Recall.\n")
     
     print("Saving final model to model.joblib...")
     joblib.dump(final_model, 'model.joblib')
