@@ -31,7 +31,7 @@ def main():
     for c in contamination_values:
         start_time = time.time()
         # Train
-        model = IsolationForest(contamination=c, n_jobs=-1, random_state=42)
+        model = IsolationForest(n_estimators=300, contamination=c, n_jobs=-1, random_state=42)
         model.fit(X_train_benign)
         
         # Predict on validation
@@ -82,7 +82,7 @@ def main():
     print(f"\nSelected best contamination: {best_c} (Target: FPR < 0.05 with max Recall)")
     
     print("\nRetraining final model on full benign set with best contamination...")
-    final_model = IsolationForest(contamination=best_c, n_jobs=-1, random_state=42)
+    final_model = IsolationForest(n_estimators=300, contamination=best_c, n_jobs=-1, random_state=42)
     final_model.fit(X_train_benign)
     
     print("Evaluating on final held-out test slice...")
